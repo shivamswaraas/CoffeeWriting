@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shivam Prateek — Brand Psychology &amp; Copy</title>
+  <meta name="description" content="Algorithms change every month. Human psychology hasn't changed in 10,000 years. Copywriting and brand psychology by Shivam Prateek." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --white:#FFFFFF; --grid:#E4E5EC; --pgrid:#ECECF3; --ink:#111111; --muted:#52525B;
+      --cobalt:#1D4ED8; --pine:#0C1E19; --ivory:#F5F1E8; --manila:#F6F1E7;
+      --manila-b:#E1D8C5; --champagne:#E5C185; --vermilion:#E0462B; --line:#DCDCE3;
+    }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body {
+      background-color:var(--white);
+      background-image:linear-gradient(to right,var(--grid) 1px,transparent 1px),linear-gradient(to bottom,var(--grid) 1px,transparent 1px);
+      background-size:32px 32px; color:var(--ink); font-family:'Inter',-apple-system,sans-serif;
+      -webkit-font-smoothing:antialiased; overflow-x:hidden;
+    }
+
+    /* Stage & Tall Print Magazine Proportions */
+    .stage-wrap { height:680vh; position:relative; }
+    .stage-sticky { position:sticky; top:0; height:100vh; width:100%; display:flex; align-items:center; justify-content:center; overflow:hidden; padding-bottom:36px; }
+    .spread { position:relative; height:min(88vh,780px); aspect-ratio:1.42/1; max-width:94vw; perspective:2800px; transform:translateX(-25%); will-change:transform; }
+    @media (max-aspect-ratio:13/10) and (min-width:861px) { .spread { width:92vw; height:auto; } }
+
+    /* 3D Leaves & Strict Margin-Contained Pages */
+    .leaf { position:absolute; top:0; left:50%; width:50%; height:100%; transform-origin:left center; transform-style:preserve-3d; will-change:transform; }
+    .face, .base-page {
+      position:absolute; inset:0; backface-visibility:hidden; -webkit-backface-visibility:hidden; overflow:hidden;
+      background-color:var(--white);
+      background-image:linear-gradient(to right,var(--pgrid) 1px,transparent 1px),linear-gradient(to bottom,var(--pgrid) 1px,transparent 1px);
+      background-size:28px 28px; border:1px solid #D3D4DE;
+      padding:clamp(18px,2.5vh,30px) clamp(20px,2.4vw,34px);
+      display:flex; flex-direction:column; gap:10px;
+    }
+    .face-front { transform:rotateY(0deg); border-left:1px solid #E5E6EC; border-radius:0 3px 3px 0; box-shadow:12px 22px 54px rgba(8,16,14,.13); }
+    .face-back { transform:rotateY(180deg); border-right:1px solid #E5E6EC; border-radius:3px 0 0 3px; box-shadow:-4px 0 0 #F7F4ED,-5px 0 0 #DBD5C7,-14px 24px 55px rgba(8,16,14,.12); }
+    .base-page { top:0; left:50%; width:50%; height:100%; z-index:1; border-left:1px solid #E5E6EC; border-radius:0 3px 3px 0; box-shadow:4px 0 0 #F7F4ED,5px 0 0 #DBD5C7,8px 0 0 #F3EFE7,9px 0 0 #CFC8B9,16px 28px 65px rgba(8,16,14,.16); }
+    .face-front:not(.cover-face)::before, .base-page::before { content:""; position:absolute; inset:0 auto 0 0; width:34px; background:linear-gradient(to right,rgba(10,18,15,.12),rgba(10,18,15,.025) 45%,transparent); pointer-events:none; z-index:9; }
+    .face-back::after { content:""; position:absolute; inset:0 0 0 auto; width:34px; background:linear-gradient(to left,rgba(10,18,15,.12),rgba(10,18,15,.025) 45%,transparent); pointer-events:none; z-index:9; }
+
+    /* Safe Inner Body: Content NEVER overflows margins on any screen */
+    .page-body { flex:1; min-height:0; overflow-y:auto; overflow-x:hidden; display:flex; flex-direction:column; position:relative; z-index:6; padding-right:4px; scrollbar-width:thin; scrollbar-color:#D4D4DC transparent; }
+    .page-body::-webkit-scrollbar { width:4px; }
+    .page-body::-webkit-scrollbar-thumb { background:#D4D4DC; border-radius:4px; }
+    .page-inner { margin:auto 0; display:flex; flex-direction:column; gap:clamp(10px,1.6vh,18px); }
+
+    /* Page 00: Magazine Cover */
+    .cover-face {
+      background:var(--pine); border:none; border-radius:2px 3px 3px 2px; color:var(--ivory); cursor:pointer; justify-content:space-between;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.14),4px 0 0 #F7F4ED,5px 0 0 #DBD5C7,8px 0 0 #F3EFE7,9px 0 0 #CFC8B9,18px 28px 65px rgba(8,18,14,.30);
+      padding:clamp(22px,3.2vh,34px) clamp(24px,2.8vw,38px) clamp(26px,3.6vh,38px) clamp(34px,3.6vw,48px);
+    }
+    .cover-face::after { content:""; position:absolute; inset:0; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E"); pointer-events:none; mix-blend-mode:overlay; z-index:12; }
+    .spine { position:absolute; inset:0 auto 0 0; width:22px; background:linear-gradient(to right,rgba(0,0,0,.55),rgba(255,255,255,.08) 38%,rgba(0,0,0,.36) 70%,rgba(255,255,255,.1) 86%,transparent); z-index:11; pointer-events:none; }
+    .portrait-layer { position:absolute; inset:0; z-index:3; background:radial-gradient(ellipse 68% 58% at 54% 38%,#1C372E 0%,#0D1E19 56%,#07110E 100%); }
+    .portrait-img { width:100%; height:100%; object-fit:cover; object-position:center 18%; filter:grayscale(100%) contrast(1.22) brightness(.88); mix-blend-mode:luminosity; opacity:.92; display:none; }
+    .editorial-scrim { position:absolute; inset:0; z-index:5; background:linear-gradient(to bottom,rgba(7,17,14,.56) 0%,rgba(7,17,14,.08) 25%,rgba(7,17,14,.14) 46%,rgba(7,17,14,.85) 72%,rgba(7,17,14,.98) 100%); pointer-events:none; }
+    .masthead { position:relative; z-index:6; text-align:center; padding-bottom:12px; border-bottom:1px solid rgba(245,241,232,.22); }
+    .masthead-name { font-family:'Instrument Serif',serif; font-size:clamp(1.85rem,4.1vh,3.05rem); font-weight:400; letter-spacing:.14em; text-transform:uppercase; line-height:.95; color:var(--ivory); padding-left:.14em; white-space:nowrap; }
+    .cover-copy { position:relative; z-index:8; margin-top:auto; }
+    .accent-bar { width:34px; height:2.5px; background:var(--vermilion); margin-bottom:14px; }
+    .hook-line-1 { font-family:'Inter Tight',sans-serif; font-size:clamp(1.05rem,2vh,1.45rem); font-weight:500; letter-spacing:-.015em; color:rgba(245,241,232,.78); line-height:1.25; margin-bottom:8px; }
+    .hook-line-2 { font-family:'Instrument Serif',serif; font-size:clamp(2.2rem,5.3vh,3.65rem); font-weight:400; line-height:.96; letter-spacing:-.015em; color:var(--ivory); }
+    .hook-line-2 em { font-style:italic; color:var(--champagne); }
+    .cover-sub { margin-top:16px; padding-top:14px; border-top:1px solid rgba(245,241,232,.18); font-size:clamp(13px,1.55vh,15px); line-height:1.55; color:rgba(245,241,232,.86); }
+
+    /* Shared Chrome & Choreography */
+    .r-head, .folio { display:flex; justify-content:space-between; align-items:center; font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted); position:relative; z-index:6; flex-shrink:0; }
+    .r-head { padding-bottom:9px; border-bottom:1px solid var(--line); }
+    .folio { padding-top:9px; border-top:1px solid var(--line); color:#71717A; }
+    .status-inline { display:inline-flex; align-items:center; gap:7px; color:var(--ink); }
+    .dot-live { width:7px; height:7px; border-radius:50%; background:var(--vermilion); }
+
+    .choreo { opacity:0; transform:translateY(15px); transition:opacity .55s cubic-bezier(.22,1,.36,1),transform .6s cubic-bezier(.22,1,.36,1); }
+    .choreo.in { opacity:1; transform:translateY(0); }
+    .choreo-stamp { opacity:0; transform:scale(1.38) rotate(-8deg); transition:opacity .35s ease,transform .45s cubic-bezier(.22,1,.36,1); }
+    .choreo-stamp.in { opacity:1; transform:scale(1) rotate(-2deg); }
+
+    /* Spread 1: Diagnosis + Editorial Chart + 8+ Yrs Ledger */
+    .p-title { font-family:'Inter Tight',sans-serif; font-size:clamp(1.45rem,2.95vh,2.35rem); font-weight:600; line-height:1.09; letter-spacing:-.028em; color:var(--ink); }
+    .cobalt-focus { font-family:'Instrument Serif',serif; font-style:italic; font-weight:400; color:var(--cobalt); position:relative; display:inline-block; padding:0 4px; }
+    .cobalt-ring { position:absolute; left:-7px; top:-4px; width:calc(100% + 14px); height:calc(100% + 10px); pointer-events:none; }
+    .cobalt-ring path { stroke-dasharray:460; stroke-dashoffset:460; transition:stroke-dashoffset .9s cubic-bezier(.22,1,.36,1); }
+    .cobalt-ring.drawn path { stroke-dashoffset:0; }
+    .pen-note { font-family:'Caveat',cursive; font-size:clamp(18px,2.3vh,22px); color:var(--cobalt); display:inline-flex; align-items:center; gap:8px; line-height:1.15; transform:rotate(-1.2deg); }
+
+    .chart-card { background:rgba(255,255,255,.94); border:1px solid var(--line); padding:12px 14px 10px; }
+    .chart-meta { display:flex; justify-content:space-between; font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:.07em; text-transform:uppercase; color:var(--muted); margin-bottom:6px; }
+    .chart-curve { stroke-dasharray:420; stroke-dashoffset:420; transition:stroke-dashoffset 1.3s cubic-bezier(.22,1,.36,1); }
+    .chart-curve.drawn { stroke-dashoffset:0; }
+
+    .p-lead { font-size:clamp(13px,1.7vh,15.5px); line-height:1.56; color:#27272A; }
+    .p-sub { font-size:clamp(12.5px,1.5vh,14px); line-height:1.54; color:var(--muted); border-left:2px solid var(--cobalt); padding-left:13px; }
+    .ledger-2x2 { display:grid; grid-template-columns:repeat(2,1fr); background:var(--white); border:1px solid var(--line); box-shadow:0 8px 20px rgba(0,0,0,.03); }
+    .ledger-cell { padding:clamp(10px,1.5vh,15px) 14px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .ledger-cell:nth-child(2n) { border-right:none; }
+    .ledger-cell:nth-last-child(-n+2) { border-bottom:none; }
+    .ledger-num { font-family:'Inter Tight',sans-serif; font-size:clamp(19px,2.7vh,25px); font-weight:700; letter-spacing:-.02em; }
+    .ledger-lbl { font-family:'IBM Plex Mono',monospace; font-size:9px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-top:2px; }
+
+    /* Spread 2: 3 Laws + Live Interactive Dissector */
+    .law-stack { display:grid; gap:10px; }
+    .law-card { padding:clamp(12px,1.7vh,17px) 17px; box-shadow:0 6px 18px rgba(0,0,0,.035); }
+    .law-pine { background:var(--pine); color:var(--ivory); }
+    .law-pine .law-k { color:#8AB5A4; }
+    .law-manila { background:var(--manila); border:1px solid var(--manila-b); }
+    .law-manila .law-k { color:var(--vermilion); }
+    .law-cobalt { background:var(--white); border:1.5px solid var(--cobalt); }
+    .law-cobalt .law-k { color:var(--cobalt); }
+    .law-k { font-family:'IBM Plex Mono',monospace; font-size:9px; letter-spacing:.1em; text-transform:uppercase; margin-bottom:4px; }
+    .law-card h3 { font-family:'Inter Tight',sans-serif; font-size:clamp(14.5px,1.95vh,18px); font-weight:500; line-height:1.26; }
+
+    .dissector-box { background:var(--white); border:1px solid var(--line); padding:clamp(13px,1.8vh,19px); box-shadow:0 10px 24px rgba(0,0,0,.04); }
+    .seg-toggle { display:inline-flex; background:#F4F4F6; border:1px solid var(--line); padding:3px; margin-bottom:11px; }
+    .seg-btn { font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.08em; text-transform:uppercase; border:none; background:transparent; color:var(--muted); padding:5px 10px; cursor:pointer; }
+    .seg-btn.active { background:var(--ink); color:var(--white); }
+    .dissect-copy { font-family:'Inter Tight',sans-serif; font-size:clamp(15.5px,2.1vh,19.5px); line-height:1.34; color:var(--ink); }
+    .dissect-before { color:#71717A; text-decoration:line-through; text-decoration-color:rgba(224,70,43,.55); }
+    .xray-word { background:rgba(29,78,216,.1); border-bottom:2px solid var(--cobalt); padding:0 3px; cursor:pointer; }
+    .xray-word:hover, .xray-word.selected { background:rgba(29,78,216,.22); }
+    .xray-readout { margin-top:11px; padding:9px 11px; background:#F8FAFF; border-left:2.5px solid var(--cobalt); font-size:12.5px; color:#1E293B; line-height:1.45; }
+    .xray-readout strong { font-family:'IBM Plex Mono',monospace; font-size:9.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--cobalt); display:block; margin-bottom:2px; }
+    .cap-mini { display:grid; grid-template-columns:repeat(2,1fr); gap:8px; }
+    .cap-pill { background:var(--manila); border:1px solid var(--manila-b); padding:8px 10px; font-size:11.5px; line-height:1.32; }
+    .cap-pill b { display:block; font-family:'Inter Tight',sans-serif; font-size:12.5px; margin-bottom:2px; }
+
+    /* Spread 3: Redacted NDA Vault (Strict Containment) */
+    .stamp { display:inline-block; font-family:'IBM Plex Mono',monospace; font-size:9.5px; font-weight:500; letter-spacing:.12em; padding:3px 9px; border:1.5px solid var(--vermilion); color:var(--vermilion); text-transform:uppercase; width:fit-content; }
+    .redacted-bar { display:inline-block; background:var(--ink); color:transparent; padding:0 5px; border-radius:2px; user-select:none; font-size:10.5px; transform-origin:left center; transform:scaleX(0); transition:transform .65s cubic-bezier(.22,1,.36,1); }
+    .redacted-bar.in { transform:scaleX(1); }
+    .vault-card { background:var(--white); border:1px solid var(--line); padding:12px 14px; cursor:pointer; box-shadow:0 6px 16px rgba(0,0,0,.03); transition:border-color .2s; }
+    .vault-card:hover { border-color:var(--ink); }
+    .vault-top { display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:5px; }
+    .file-tab { font-family:'IBM Plex Mono',monospace; font-size:9.5px; background:var(--pine); color:var(--ivory); padding:2px 7px; letter-spacing:.08em; }
+    .vault-toggle { font-family:'IBM Plex Mono',monospace; font-size:9.5px; color:var(--cobalt); }
+    .vault-card h4 { font-family:'Inter Tight',sans-serif; font-size:15px; font-weight:600; line-height:1.24; }
+    .vault-detail { display:none; margin-top:8px; padding-top:8px; border-top:1px dashed var(--line); font-size:12.5px; color:#3F3F46; line-height:1.45; }
+    .vault-card.open .vault-detail { display:block; }
+    .vault-detail p + p { margin-top:5px; }
+    .vault-detail b { color:var(--ink); }
+
+    /* Spread 4: Boundary + Consultation + Signature Bookend */
+    .boundary-quote { font-family:'Instrument Serif',serif; font-size:clamp(1.6rem,3.3vh,2.45rem); line-height:1.12; color:var(--ink); }
+    .boundary-quote em { color:var(--vermilion); font-style:italic; }
+    .pill-row { display:flex; flex-wrap:wrap; gap:7px; }
+    .diag-pill { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.04em; background:var(--white); border:1px solid #C8CAD4; color:var(--ink); padding:6px 11px; cursor:pointer; transition:all .2s; }
+    .diag-pill:hover { border-color:var(--ink); }
+    .diag-pill.active { background:var(--pine); color:var(--ivory); border-color:var(--pine); }
+    .cta-btn { display:inline-block; background:var(--vermilion); color:var(--white); font-family:'IBM Plex Mono',monospace; font-size:11.5px; letter-spacing:.07em; text-transform:uppercase; text-decoration:none; padding:13px 22px; text-align:center; transition:background .2s,transform .2s; }
+    .cta-btn:hover { background:var(--ink); transform:translateY(-2px); }
+
+    .signoff-row { display:flex; align-items:center; justify-content:space-between; gap:12px; padding-top:10px; border-top:1px dashed var(--line); }
+    .avatar-wrap { display:flex; align-items:center; gap:10px; }
+    .mini-avatar { width:40px; height:40px; border-radius:50%; object-fit:cover; object-position:center 20%; filter:grayscale(100%) contrast(1.18); border:1.5px solid var(--pine); display:none; }
+    .mini-avatar-fallback { width:40px; height:40px; border-radius:50%; background:var(--pine); color:var(--champagne); font-family:'Instrument Serif',serif; font-size:16px; display:flex; align-items:center; justify-content:center; }
+    .sig-path { stroke-dasharray:340; stroke-dashoffset:340; transition:stroke-dashoffset 1.3s cubic-bezier(.22,1,.36,1); }
+    .sig-path.drawn { stroke-dashoffset:0; }
+    .sub-links { display:flex; flex-wrap:wrap; gap:14px; font-family:'IBM Plex Mono',monospace; font-size:10.5px; }
+    .sub-links a { color:var(--ink); text-decoration:none; border-bottom:1px solid var(--ink); }
+
+    /* Digital Magazine Chapter HUD */
+    .digital-hud { position:fixed; bottom:14px; left:50%; transform:translateX(-50%); z-index:70; display:flex; align-items:center; gap:6px; background:rgba(255,255,255,.94); backdrop-filter:blur(8px); border:1px solid var(--line); padding:6px 10px; box-shadow:0 8px 24px rgba(0,0,0,.07); }
+    .hud-btn { font-family:'IBM Plex Mono',monospace; font-size:10px; letter-spacing:.08em; text-transform:uppercase; border:none; background:transparent; color:#71717A; padding:5px 10px; cursor:pointer; transition:all .2s; }
+    .hud-btn:hover { color:var(--ink); }
+    .hud-btn.active { background:var(--ink); color:var(--white); }
+
+    /* Mobile Single-Page 3D Flip Deck (<= 860px) */
+    @media (max-width:860px) {
+      .stage-wrap { height:960vh; }
+      .stage-sticky { padding:12px 0 64px; }
+      .spread { width:min(92vw,440px); height:min(82svh,680px); aspect-ratio:auto; transform:none !important; perspective:2200px; }
+      .m-page {
+        position:absolute !important; inset:0 !important; width:100% !important; height:100% !important; left:0 !important;
+        transform-origin:left center !important; transform:rotateY(0deg); backface-visibility:visible !important;
+        border-radius:3px !important; box-shadow:3px 0 0 #F7F4ED,4px 0 0 #DCD5C7,0 16px 40px rgba(8,16,14,.16) !important;
+      }
+      .m-page::before, .m-page::after { display:none; }
+      .masthead-name { font-size:clamp(1.65rem,7vw,2.25rem); letter-spacing:.1em; }
+      .hook-line-2 { font-size:clamp(2rem,8.8vw,2.9rem); }
+      .p-title { font-size:clamp(1.42rem,5.8vw,1.95rem); }
+      .cap-mini { grid-template-columns:1fr; }
+      .digital-hud { max-width:94vw; overflow-x:auto; gap:2px; padding:5px 6px; }
+      .hud-btn { font-size:9px; padding:5px 7px; white-space:nowrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="digital-hud" aria-label="Magazine chapters">
+    <button class="hud-btn active" data-chapter="0">00 Cover</button>
+    <button class="hud-btn" data-chapter="1">01 Diagnosis</button>
+    <button class="hud-btn" data-chapter="2">02 Psychology</button>
+    <button class="hud-btn" data-chapter="3">03 Vault</button>
+    <button class="hud-btn" data-chapter="4">04 Talk</button>
+  </nav>
+
+  <div class="stage-wrap" id="stageWrap">
+    <div class="stage-sticky">
+      <div class="spread" id="spread">
+
+        <!-- LEAF 1: Cover (00) + Diagnosis & Chart (02) -->
+        <div class="leaf" id="leaf0">
+          <article class="face face-front cover-face" data-m-page="0" id="magCover" title="Scroll or click to open">
+            <div class="spine"></div>
+            <div class="portrait-layer">
+              <img id="portraitImg" class="portrait-img" alt="Shivam Prateek" />
+              <div id="defaultArt" style="position:absolute;inset:0;pointer-events:none;" aria-hidden="true">
+                <svg viewBox="0 0 420 580" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" fill="none">
+                  <defs>
+                    <radialGradient id="rim" cx="62%" cy="32%" r="48%">
+                      <stop offset="0%" stop-color="#E5C185" stop-opacity="0.28"/>
+                      <stop offset="55%" stop-color="#22453A" stop-opacity="0.18"/>
+                      <stop offset="100%" stop-color="#07110E" stop-opacity="0"/>
+                    </radialGradient>
+                    <linearGradient id="fig" x1="30%" y1="15%" x2="80%" y2="85%">
+                      <stop offset="0%" stop-color="#27473C" stop-opacity="0.9"/>
+                      <stop offset="55%" stop-color="#11241E" stop-opacity="0.95"/>
+                      <stop offset="100%" stop-color="#060F0C" stop-opacity="1"/>
+                    </linearGradient>
+                  </defs>
+                  <rect width="420" height="580" fill="url(#rim)"/>
+                  <ellipse cx="215" cy="198" rx="64" ry="82" fill="url(#fig)" stroke="#E5C185" stroke-opacity="0.22" stroke-width="0.9"/>
+                  <path d="M72 445 C 86 335, 140 296, 215 296 C 290 296, 344 335, 358 445 L 358 580 L 72 580 Z" fill="url(#fig)" stroke="#E5C185" stroke-opacity="0.14" stroke-width="0.9"/>
+                  <path d="M242 130 C 270 156, 276 205, 256 250" stroke="#E5C185" stroke-opacity="0.45" stroke-width="1.4" stroke-linecap="round"/>
+                </svg>
+              </div>
+            </div>
+            <div class="editorial-scrim"></div>
+            <header class="masthead"><div class="masthead-name">SHIVAM PRATEEK</div></header>
+            <div class="cover-copy">
+              <div class="accent-bar"></div>
+              <p class="hook-line-1">Algorithms change every month.</p>
+              <h1 class="hook-line-2">Human psychology hasn’t changed in <em>10,000 years.</em></h1>
+              <p class="cover-sub">I engineer words to make buyers choose you—before price enters the room.</p>
+            </div>
+          </article>
+
+          <section class="face face-back" data-m-page="1">
+            <div class="r-head"><span>SHIVAM PRATEEK</span><span>01 / THE DIAGNOSIS</span></div>
+            <div class="page-body"><div class="page-inner">
+              <h2 class="p-title">
+                You already know why your brand matters. A stranger gives you
+                <span class="cobalt-focus">five seconds
+                  <svg class="cobalt-ring" id="cobaltRing" viewBox="0 0 220 75" fill="none" preserveAspectRatio="none">
+                    <path d="M12 44 C 14 10, 198 6, 208 38 C 216 58, 42 70, 14 48" stroke="#1D4ED8" stroke-width="2.3" stroke-linecap="round"/>
+                  </svg>
+                </span>
+                to feel it—and leaves.
+              </h2>
+              <div class="pen-note choreo" data-s="1" data-d="0.22">
+                <svg width="24" height="18" viewBox="0 0 28 22" fill="none">
+                  <path d="M2 20 C 8 10, 16 6, 25 4 M 19 1 L 26 4 L 21 10" stroke="#1D4ED8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span>it isn't a traffic problem — it's a translation problem</span>
+              </div>
+              <div class="chart-card choreo" data-s="1" data-d="0.34">
+                <div class="chart-meta">
+                  <span>Paid Ads (Rented)</span>
+                  <span style="color:var(--cobalt);">Brand Psychology (Compounds)</span>
+                </div>
+                <svg viewBox="0 0 320 92" width="100%" height="auto" fill="none">
+                  <line x1="0" y1="84" x2="320" y2="84" stroke="#E4E5EC" stroke-width="1"/>
+                  <path d="M4 62 L38 40 L68 72 L106 36 L142 74 L178 44 L216 76 L256 48 L296 78 L316 80" stroke="#A1A1AA" stroke-width="1.4" stroke-dasharray="4 3"/>
+                  <path id="chartCurve" class="chart-curve" d="M4 78 C 68 76, 130 68, 194 46 C 248 28, 286 14, 316 8" stroke="#1D4ED8" stroke-width="2.4" stroke-linecap="round"/>
+                  <circle cx="316" cy="8" r="3.5" fill="#E0462B"/>
+                </svg>
+              </div>
+            </div></div>
+            <div class="folio"><span>02</span><span>THE FIVE-SECOND GAP</span></div>
+          </section>
+        </div>
+
+        <!-- LEAF 2: Origin & 8+ Yrs Ledger (03) + 3 Laws (04) -->
+        <div class="leaf" id="leaf1">
+          <section class="face face-front" data-m-page="2">
+            <div class="r-head"><span>BRAND PSYCHOLOGY &amp; COPY</span><span class="status-inline"><span class="dot-live"></span><span>Open for select brands</span></span></div>
+            <div class="page-body"><div class="page-inner">
+              <p class="p-lead">That single five-second gap is why ads get more expensive every quarter, why lesser competitors drag you into price wars, and why organic word-of-mouth never catches fire.</p>
+              <p class="p-sub choreo" data-s="1" data-d="0.18">Trained in Chartered Accountancy and finance, then forged across eight years behind NDAs and brand voices—I bridge analytical rigor with behavioral psychology so both buyers and modern search engines can’t ignore you.</p>
+              <div class="ledger-2x2">
+                <div class="ledger-cell choreo" data-s="1" data-d="0.22"><div class="ledger-num">8+ yrs</div><div class="ledger-lbl">Behind NDAs &amp; Voices</div></div>
+                <div class="ledger-cell choreo" data-s="1" data-d="0.32"><div class="ledger-num">3,000+</div><div class="ledger-lbl">Pieces Engineered</div></div>
+                <div class="ledger-cell choreo" data-s="1" data-d="0.42"><div class="ledger-num">40+</div><div class="ledger-lbl">Brands &amp; Industries</div></div>
+                <div class="ledger-cell choreo" data-s="1" data-d="0.52"><div class="ledger-num">+45%</div><div class="ledger-lbl">Organic Traffic Lift</div></div>
+              </div>
+            </div></div>
+            <div class="folio"><span>SCROLL TO TURN PAGE →</span><span>03</span></div>
+          </section>
+
+          <section class="face face-back" data-m-page="3">
+            <div class="r-head"><span>02 / OPERATING SYSTEM</span><span>WHY BRANDS SPREAD</span></div>
+            <div class="page-body"><div class="page-inner">
+              <h2 class="p-title" style="font-size:clamp(1.35rem,2.6vh,2rem);">Three rules that outlast every algorithm update.</h2>
+              <div class="law-stack">
+                <div class="law-card law-pine choreo" data-s="2" data-d="0.12"><div class="law-k">01 // BELIEF</div><h3>Attention can be bought. Belief cannot.</h3></div>
+                <div class="law-card law-manila choreo" data-s="2" data-d="0.28"><div class="law-k">02 // WORD OF MOUTH</div><h3>People don’t share products. They share how a brand makes them feel about themselves.</h3></div>
+                <div class="law-card law-cobalt choreo" data-s="2" data-d="0.44"><div class="law-k">03 // DISCOVERY + EMOTION</div><h3>Psychology fails if nobody finds you. Search (SEO, AEO &amp; GEO) fails if nobody feels you.</h3></div>
+              </div>
+            </div></div>
+            <div class="folio"><span>04</span><span>OPERATING PRINCIPLES</span></div>
+          </section>
+        </div>
+
+        <!-- LEAF 3: Live Copy Dissector (05) + Redacted Vault I (06) -->
+        <div class="leaf" id="leaf2">
+          <section class="face face-front" data-m-page="4">
+            <div class="r-head"><span>LIVE INTERACTIVE DISSECTION</span><span>CLICK HIGHLIGHTS</span></div>
+            <div class="page-body"><div class="page-inner">
+              <div class="dissector-box choreo" data-s="2" data-d="0.18">
+                <div class="seg-toggle">
+                  <button class="seg-btn" id="btnBefore" onclick="setDissect('before')">Before // Noise</button>
+                  <button class="seg-btn active" id="btnAfter" onclick="setDissect('after')">After // Engineered</button>
+                </div>
+                <div id="viewBefore" style="display:none;">
+                  <p class="dissect-copy dissect-before">"We provide innovative, modern solutions designed to streamline operations and empower growing businesses."</p>
+                  <div class="xray-readout" style="border-color:var(--vermilion);background:#FFF8F6;">
+                    <strong style="color:var(--vermilion);">DIAGNOSIS // 0.4-SECOND REJECTION</strong>
+                    Every competitor can claim this exact sentence. Zero emotional anchor—the brain files it as background noise.
+                  </div>
+                </div>
+                <div id="viewAfter">
+                  <p class="dissect-copy">
+                    "<span class="xray-word selected" onclick="showXray(this,'DISARMS CYNICISM','Calls out the buyer’s unspoken exhaustion before pitching anything—creating immediate trust.')">Your team doesn’t need another tool.</span> They’re losing <span class="xray-word" onclick="showXray(this,'CONCRETE LOSS AVERSION','Replaces abstract corporate jargon with a real pain buyers repeat in meetings.')">nine hours a week</span> translating between systems <span class="xray-word" onclick="showXray(this,'ENEMY FRAMING','Shifts blame off the buyer and onto a shared external enemy—removing sales resistance.')">that refuse to talk.</span>"
+                  </p>
+                  <div class="xray-readout" id="xrayBox">
+                    <strong>DISARMS CYNICISM</strong>
+                    Calls out the buyer’s unspoken exhaustion before pitching anything—creating immediate trust.
+                  </div>
+                </div>
+              </div>
+              <div class="cap-mini choreo" data-s="2" data-d="0.38">
+                <div class="cap-pill"><b>Brand Voice &amp; Positioning</b>Systems that end price wars.</div>
+                <div class="cap-pill"><b>Conversion Copy &amp; Funnels</b>Landing pages, emails &amp; UX.</div>
+                <div class="cap-pill"><b>SEO, AEO &amp; GEO Architecture</b>Built for humans &amp; AI engines.</div>
+                <div class="cap-pill"><b>Full-Funnel Narratives</b>Long-form authority &amp; scripts.</div>
+              </div>
+            </div></div>
+            <div class="folio"><span>SCROLL TO TURN PAGE →</span><span>05</span></div>
+          </section>
+
+          <section class="face face-back" data-m-page="5">
+            <div class="r-head"><span>03 / THE REDACTED VAULT</span><span>8+ YRS BEHIND NDAs</span></div>
+            <div class="page-body"><div class="page-inner">
+              <div class="stamp choreo-stamp" data-s="3" data-d="0.10">NDA // IDENTITIES PROTECTED</div>
+              <h2 class="p-title" style="font-size:clamp(1.3rem,2.45vh,1.9rem);">My job has always been to make the client look brilliant—not steal the spotlight.</h2>
+              <p class="p-lead" style="font-size:13px;color:var(--muted);">Eight years behind NDAs and brand voices. Click any file to inspect the psychology and outcome.</p>
+              <div class="vault-card open choreo" data-s="3" data-d="0.26" onclick="toggleVault(this)">
+                <div class="vault-top">
+                  <div><span class="file-tab">FILE 01</span> <span class="redacted-bar" data-s="3" data-d="0.30">██████████</span></div>
+                  <span class="vault-toggle">[ INSPECT ]</span>
+                </div>
+                <h4>Finance, Tech &amp; E-Commerce Organic Engine</h4>
+                <div class="vault-detail">
+                  <p><b>Symptom:</b> High-intent search visitors landed and bounced—articles informed without persuading.</p>
+                  <p><b>Shift:</b> Mapped search intent into story-led CRO copy across 120+ optimized assets.</p>
+                  <p><b>Result:</b> <b>+45% lift in organic traffic</b>, deeper dwell time, and stronger conversions.</p>
+                </div>
+              </div>
+            </div></div>
+            <div class="folio"><span>06</span><span>PROOF WITHOUT BORROWED LOGOS</span></div>
+          </section>
+        </div>
+
+        <!-- LEAF 4: Redacted Vault II (07) + Boundary (08) -->
+        <div class="leaf" id="leaf3">
+          <section class="face face-front" data-m-page="6">
+            <div class="r-head"><span>CONFIDENTIAL FILES</span><span>CLICK TO UNSEAL</span></div>
+            <div class="page-body"><div class="page-inner">
+              <div class="vault-card open choreo" data-group="p7" data-s="3" data-d="0.20" onclick="toggleVault(this,'p7')">
+                <div class="vault-top">
+                  <div><span class="file-tab">FILE 02</span> <span class="redacted-bar" data-s="3" data-d="0.26">████████████</span></div>
+                  <span class="vault-toggle">[ INSPECT ]</span>
+                </div>
+                <h4>Emerging Brands — Full Voice &amp; Funnel Systems</h4>
+                <div class="vault-detail">
+                  <p><b>Symptom:</b> Fragmented tone across landing pages, emails, and product copy made strong offers feel generic.</p>
+                  <p><b>Shift:</b> Built unified brand voice guides, storytelling systems, and behavioral funnels across 40+ clients.</p>
+                  <p><b>Result:</b> 3,000+ cohesive assets delivered—turning inconsistent brands into distinct category voices.</p>
+                </div>
+              </div>
+              <div class="vault-card choreo" data-group="p7" data-s="3" data-d="0.36" onclick="toggleVault(this,'p7')">
+                <div class="vault-top">
+                  <div><span class="file-tab">FILE 03</span> <span class="redacted-bar" data-s="3" data-d="0.40">█████████</span></div>
+                  <span class="vault-toggle">[ INSPECT ]</span>
+                </div>
+                <h4>Search-to-Belief Content &amp; AI Visibility (AEO/GEO)</h4>
+                <div class="vault-detail">
+                  <p><b>Symptom:</b> Brands chasing rankings with soulless content neither humans nor AI engines trusted to cite.</p>
+                  <p><b>Shift:</b> Paired clean semantic structure for generative engines with sharp, human-first narrative authority.</p>
+                  <p><b>Result:</b> Durable organic discoverability without sacrificing brand voice or word-of-mouth resonance.</p>
+                </div>
+              </div>
+            </div></div>
+            <div class="folio"><span>SCROLL TO TURN PAGE →</span><span>07</span></div>
+          </section>
+
+          <section class="face face-back" data-m-page="7">
+            <div class="r-head"><span>04 / THE BOUNDARY</span><span>WHO THIS IS FOR</span></div>
+            <div class="page-body"><div class="page-inner">
+              <p class="boundary-quote choreo" data-s="4" data-d="0.14">I don’t write hype, clickbait, or clever noise meant to disguise a <em>weak product.</em></p>
+              <p class="p-lead choreo" data-s="4" data-d="0.28">I work with founders, companies, and creators who have built something genuinely worth loving—and are tired of watching louder, inferior competitors take the attention and force them into price wars.</p>
+              <p class="p-sub choreo" data-s="4" data-d="0.42">If you want overnight gimmicks, I am the wrong person. If you want words engineered on permanent human psychology that compound organically, turn your eyes to the right.</p>
+            </div></div>
+            <div class="folio"><span>08</span><span>SELECTIVE BY DESIGN</span></div>
+          </section>
+        </div>
+
+        <!-- BASE PAGE 09: THE QUIET CLOSE + LIVE INK SIGNATURE BOOKEND -->
+        <section class="base-page" data-m-page="8">
+          <div class="r-head"><span>START A CONVERSATION</span><span class="status-inline"><span class="dot-live"></span><span>Direct to Shivam</span></span></div>
+          <div class="page-body"><div class="page-inner">
+            <h2 class="p-title choreo" data-s="4" data-d="0.16" style="font-size:clamp(1.45rem,2.75vh,2.1rem);">Where is your brand losing people right now?</h2>
+            <p class="p-lead choreo" data-s="4" data-d="0.26" style="font-size:13.5px;color:var(--muted);">Select what feels closest—it tailors your note automatically. No scripted sales calls. Just an honest diagnosis.</p>
+            <div class="pill-row choreo" data-s="4" data-d="0.34">
+              <button class="diag-pill active" onclick="pickIssue(this,'Escaping Price Wars')">Losing on price</button>
+              <button class="diag-pill" onclick="pickIssue(this,'Flat Organic Growth')">Flat organic growth</button>
+              <button class="diag-pill" onclick="pickIssue(this,'Forgettable Messaging')">Forgettable messaging</button>
+              <button class="diag-pill" onclick="pickIssue(this,'Full Brand Voice & Funnel')">Full brand voice</button>
+            </div>
+            <div class="choreo" data-s="4" data-d="0.44" style="display:flex;flex-direction:column;gap:12px;">
+              <a id="ctaLink" href="mailto:ShivamSwaraas@Gmail.com?subject=Brand%20Diagnosis%20%E2%80%94%20Escaping%20Price%20Wars" class="cta-btn">Write to Shivam →</a>
+              <div class="signoff-row">
+                <div class="avatar-wrap">
+                  <img id="miniAvatar" class="mini-avatar" alt="Shivam Prateek" />
+                  <div id="avatarFallback" class="mini-avatar-fallback">SP</div>
+                  <svg viewBox="0 0 150 38" width="128" height="32" fill="none" aria-label="Shivam signature">
+                    <path id="sigPath" class="sig-path" d="M8 28 C 14 8, 28 6, 22 24 C 19 32, 34 10, 40 24 C 44 16, 52 14, 54 24 C 58 14, 68 28, 76 16 C 82 26, 94 12, 102 24 C 110 18, 124 22, 142 18" stroke="#1D4ED8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div class="sub-links">
+                  <a href="https://linkedin.com/in/shivamswaraas" target="_blank">LinkedIn</a>
+                  <a href="https://linktr.ee/shivamswaraas" target="_blank">Archive</a>
+                </div>
+              </div>
+            </div>
+          </div></div>
+          <div class="folio"><span>GURGAON / REMOTE</span><span>09</span></div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ============================================================
+       GITHUB IMAGE CONFIG — PUT YOUR PHOTO FILENAME OR URL HERE
+       Example: './cover-photo.jpg' OR 'https://raw.githubusercontent.com/user/repo/main/cover-photo.jpg'
+       ============================================================ */
+    const PORTRAIT_URL = 'https://github.com/shivamswaraas/Images/blob/main/Cinematic%20Monochrome%20Contemplative%20Portrait.png';
+
+    (function loadPortrait() {
+      if (!PORTRAIT_URL) return;
+      const coverImg = document.getElementById('portraitImg');
+      const miniImg = document.getElementById('miniAvatar');
+      coverImg.onload = () => {
+        coverImg.style.display = 'block';
+        document.getElementById('defaultArt').style.display = 'none';
+      };
+      miniImg.onload = () => {
+        miniImg.style.display = 'block';
+        document.getElementById('avatarFallback').style.display = 'none';
+      };
+      coverImg.src = PORTRAIT_URL;
+      miniImg.src = PORTRAIT_URL;
+    })();
+
+    const stage = document.getElementById('stageWrap');
+    const spread = document.getElementById('spread');
+    const leaves = [0, 1, 2, 3].map(i => document.getElementById('leaf' + i));
+    const hudBtns = document.querySelectorAll('.hud-btn');
+    const cobaltRing = document.getElementById('cobaltRing');
+    const chartCurve = document.getElementById('chartCurve');
+    const sigPath = document.getElementById('sigPath');
+    const choreoEls = document.querySelectorAll('.choreo, .choreo-stamp, .redacted-bar');
+
+    const allPages = Array.from(document.querySelectorAll('[data-m-page]'))
+      .sort((a, b) => Number(a.dataset.mPage) - Number(b.dataset.mPage));
+    const originalHomes = allPages.map(el => ({ el, parent: el.parentNode }));
+    let isMobileMode = false;
+
+    function syncLayoutMode() {
+      const wantMobile = window.innerWidth <= 860;
+      if (wantMobile === isMobileMode) return;
+      isMobileMode = wantMobile;
+      if (isMobileMode) {
+        leaves.forEach(l => l.style.display = 'none');
+        allPages.forEach((p, idx) => {
+          spread.appendChild(p);
+          p.classList.add('m-page');
+          p.style.zIndex = 30 - idx;
+          p.style.transform = 'rotateY(0deg)';
+          p.style.opacity = '1';
+          p.style.pointerEvents = 'auto';
+        });
+      } else {
+        originalHomes.forEach(({ el, parent }) => {
+          el.classList.remove('m-page');
+          el.style.zIndex = ''; el.style.transform = ''; el.style.opacity = ''; el.style.pointerEvents = '';
+          parent.appendChild(el);
+        });
+        leaves.forEach(l => l.style.display = '');
+      }
+      updateMagazine();
+    }
+
+    // Smart Vault Accordion (keeps Page 07 strictly inside margins)
+    window.toggleVault = function(card, group) {
+      const wasOpen = card.classList.contains('open');
+      if (group) {
+        document.querySelectorAll(`.vault-card[data-group="${group}"]`).forEach(c => c.classList.remove('open'));
+      }
+      if (!wasOpen) card.classList.add('open');
+      else if (!group) card.classList.remove('open');
+    };
+
+    // Interactive Copy Dissector (Page 05)
+    window.setDissect = function(mode) {
+      document.getElementById('btnBefore').classList.toggle('active', mode === 'before');
+      document.getElementById('btnAfter').classList.toggle('active', mode === 'after');
+      document.getElementById('viewBefore').style.display = mode === 'before' ? 'block' : 'none';
+      document.getElementById('viewAfter').style.display = mode === 'after' ? 'block' : 'none';
+    };
+
+    window.showXray = function(el, title, desc) {
+      document.querySelectorAll('.xray-word').forEach(w => w.classList.remove('selected'));
+      el.classList.add('selected');
+      document.getElementById('xrayBox').innerHTML = `<strong>${title}</strong>${desc}`;
+    };
+
+    // Interactive Diagnosis Pills (Page 09)
+    window.pickIssue = function(btn, topic) {
+      document.querySelectorAll('.diag-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('ctaLink').href =
+        `mailto:ShivamSwaraas@Gmail.com?subject=${encodeURIComponent('Brand Diagnosis — ' + topic)}`;
+    };
+
+    const ease = t => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    const clamp = (v, a = 0, b = 1) => Math.min(Math.max(v, a), b);
+
+    const flipRanges = [[0.00, 0.55], [1.20, 1.75], [2.40, 2.95], [3.60, 4.15]];
+    const dwellStarts = [0, 0.45, 1.65, 2.85, 4.05];
+    const chapterTargetsDesktop = [0, 1.05, 2.25, 3.45, 4.75];
+    const chapterTargetsMobile  = [0, 1.4, 3.4, 5.4, 7.6];
+
+    function updateMagazine() {
+      const rect = stage.getBoundingClientRect();
+      const scrollable = stage.offsetHeight - window.innerHeight;
+      const scrolled = clamp(-rect.top, 0, scrollable);
+      const rawP = scrollable > 0 ? scrolled / scrollable : 0;
+
+      if (!isMobileMode) {
+        const u = rawP * 4.8;
+        const open1 = ease(clamp((u - flipRanges[0][0]) / (flipRanges[0][1] - flipRanges[0][0])));
+        spread.style.transform = `translateX(${-25 + open1 * 25}%)`;
+
+        leaves.forEach((leaf, i) => {
+          const [start, end] = flipRanges[i];
+          const f = ease(clamp((u - start) / (end - start)));
+          leaf.style.transform = `rotateY(${f * -180}deg)`;
+          let z = f < 0.5 ? (40 - i) : (40 + i);
+          if (f > 0.01 && f < 0.99) z += 20;
+          leaf.style.zIndex = z;
+        });
+
+        choreoEls.forEach(el => {
+          const s = Number(el.dataset.s), d = Number(el.dataset.d || 0);
+          el.classList.toggle('in', clamp((u - dwellStarts[s]) / 0.72) >= d);
+        });
+        cobaltRing.classList.toggle('drawn', u >= 0.62);
+        chartCurve.classList.toggle('drawn', u >= 0.78);
+        sigPath.classList.toggle('drawn', u >= 4.35);
+
+        let activeCh = 0;
+        if (u >= 3.85) activeCh = 4;
+        else if (u >= 2.65) activeCh = 3;
+        else if (u >= 1.45) activeCh = 2;
+        else if (u >= 0.30) activeCh = 1;
+        hudBtns.forEach((b, idx) => b.classList.toggle('active', idx === activeCh));
+      } else {
+        const u = rawP * 8;
+        allPages.forEach((page, i) => {
+          if (i === allPages.length - 1) {
+            page.style.transform = 'rotateY(0deg)'; page.style.opacity = '1'; page.style.pointerEvents = 'auto';
+            return;
+          }
+          const f = ease(clamp((u - (i + 0.15)) / 0.72));
+          page.style.transform = `rotateY(${f * -118}deg)`;
+          page.style.opacity = f > 0.7 ? clamp(1 - (f - 0.7) / 0.3) : 1;
+          page.style.pointerEvents = f > 0.35 ? 'none' : 'auto';
+        });
+
+        const cur = Math.floor(u + 0.35);
+        choreoEls.forEach(el => {
+          const host = Number(el.closest('[data-m-page]').dataset.mPage);
+          el.classList.toggle('in', cur >= host);
+        });
+        cobaltRing.classList.toggle('drawn', cur >= 1);
+        chartCurve.classList.toggle('drawn', cur >= 1);
+        sigPath.classList.toggle('drawn', cur >= 8);
+
+        let activeCh = 0;
+        if (cur >= 7) activeCh = 4;
+        else if (cur >= 5) activeCh = 3;
+        else if (cur >= 3) activeCh = 2;
+        else if (cur >= 1) activeCh = 1;
+        hudBtns.forEach((b, idx) => b.classList.toggle('active', idx === activeCh));
+      }
+    }
+
+    document.getElementById('magCover').addEventListener('click', () => jumpToChapter(1));
+
+    function jumpToChapter(ch) {
+      const scrollable = stage.offsetHeight - window.innerHeight;
+      const ratio = isMobileMode ? (chapterTargetsMobile[ch] / 8) : (chapterTargetsDesktop[ch] / 4.8);
+      window.scrollTo({ top: ratio * scrollable, behavior: 'smooth' });
+    }
+
+    hudBtns.forEach(btn => btn.addEventListener('click', () => jumpToChapter(Number(btn.dataset.chapter))));
+    window.addEventListener('scroll', updateMagazine, { passive: true });
+    window.addEventListener('resize', () => { syncLayoutMode(); updateMagazine(); });
+    syncLayoutMode();
+    updateMagazine();
+  </script>
+</body>
+</html>
